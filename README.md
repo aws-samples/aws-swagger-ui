@@ -54,20 +54,25 @@ SwaggerUIStateful3F479D90.ExportsOutputRefNetworkingVPCPrivateSubnet2Subnet388EE
 SwaggerUIStateful3F479D90.S3BucketName099EDA80 = swaggerui-stateful-s3apidocscb10f954-1q9j1u6i6ctu
 Stack ARN:
 arn:aws:cloudformation:ap-northeast-2:927208760804:stack/SwaggerUI-Stateful/bb01f180-f105-11ec-ad94-0a9de810c42a
-
-✨  Total time: 184.51s
 ```
-The S3 Bucket Name will be swaggerui-stateful-s3apidocscb10f954-1q9j1u6i6ctu for this example.
-
 
 
 ## Second, Deploy stateless resources 
 ```shell
 cdk deploy SwaggerUI/Stateless
 ```
-After deployment finished. Go to AWS Console.
-1) In the console, go to API Gateway, then select SwaggerUI. 
-2) In SwaggerUI, select Stages -> prod, then copy Invoke URL
+After deployment finished. Copy the API Gateway Endpoint from the output.
+The output looks like below.
+```
+Outputs:
+SwaggerUIStatelessAD411EB5.APIGwEndpoint2CC41FEF = https://fyp0p7n8q8.execute-api.ap-northeast-2.amazonaws.com/prod/
+Stack ARN:
+arn:aws:cloudformation:ap-northeast-2:927208760804:stack/SwaggerUI-Stateless/13efd670-f1c1-11ec-9bb7-0a2886132568
+```
+
+Then go to AWS Console.
+1) In the console, go to API Gateway and select SwaggerUI. 
+2) In SwaggerUI, select Stages -> prod.
 3) Click Export tab and download json file from Export as Swagger.
 
 ## Upload json file to S3
@@ -81,8 +86,9 @@ aws lambda update-function-configuration --function-name APIDocsFunc \
 ```
 
 ## Load Swagger UI
-Using copied Invoke URL, open Swagger UI in browser.
-the URL will be, Copied Invoke URL + /api-docs/
+Using copied API Gateway Endpoint, open Swagger UI in browser. the URL will be, 
+
+API Gateway Endpoint + /api-docs/
 
 you can see POST and GET api description for sample API.
 
